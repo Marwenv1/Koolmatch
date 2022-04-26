@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Repository\ChannelRepository;
+use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -83,5 +84,14 @@ class MessageController extends AbstractController
             [],
             true
         );
+    }
+    /**
+     * @Route("/m/back", name="app_message", methods={"GET"})
+     */
+    public function index(MessageRepository $messageRepository): Response
+    {
+        return $this->render('message/indexB.html.twig', [
+            'messages' => $messageRepository->findAll(),
+        ]);
     }
 }

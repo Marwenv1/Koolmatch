@@ -6,6 +6,8 @@ namespace App\Repository;
 
 use App\Entity\Message;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -49,4 +51,16 @@ class MessageRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function calcul()
+    {
+        $qb = $this->createQueryBuilder('t');
+        try {
+            return $qb
+                ->select('count(t.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+        }
+
+    }
 }

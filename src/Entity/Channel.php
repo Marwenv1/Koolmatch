@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ChannelRepository::class)
- * @ORM\Table(name="`channel`")
+ * @ORM\Table(name="channel")
  */
 class Channel
 {
